@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KKN–PLP UNILA 2026</title>
   
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=1.0">
 </head>
 <body>
 
@@ -165,14 +164,13 @@
 </footer>
 
 <script>
-  // --- SCRIPT UNTUK MEMBUKA MENU DI HP ---
   const hamburger = document.querySelector('.hamburger');
   const navMenu = document.querySelector('.nav-menu');
   const icon = hamburger ? hamburger.querySelector('i') : null;
 
   if (hamburger && navMenu && icon) {
     hamburger.addEventListener('click', () => {
-      // Buka/Tutup Menu
+      // Toggle Menu
       navMenu.classList.toggle('active');
       hamburger.classList.toggle('active');
 
