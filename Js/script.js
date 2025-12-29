@@ -46,11 +46,16 @@ const galleryData = [
     category: 'Rapat',        
     title: 'Koordinasi Perdana', 
     desc: 'Pertemuan pertama rapat koordinasi KKN PLP. Pembentukan struktur kepanitiaan serta pembagian tugas kepada seluruh anggota.'
-  },
+  }, // <--- JANGAN LUPA KOMA DISINI
 
-
-
-  // Anda bisa tambah Foto 3 disini dengan format yang sama...
+  // FOTO 2 (INI YANG TADI HILANG)
+  {
+    src: 'img/foto2.jpg',   // Pastikan file ini ada
+    date: '28 Des 2025',
+    category: 'Observasi',
+    title: 'Kunjungan Sekolah',
+    desc: 'Melakukan observasi awal lingkungan sekolah SMAS Utama 1 untuk memetakan kebutuhan sarana dan prasarana.'
+  }
 ];
 
 /* =========================================
