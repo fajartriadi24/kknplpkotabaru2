@@ -5,11 +5,13 @@ const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const icon = hamburger ? hamburger.querySelector('i') : null;
 
+// Pastikan elemen hamburger ada sebelum dijalankan
 if (hamburger && navMenu && icon) {
   hamburger.addEventListener('click', () => {
     navMenu.classList.toggle('active');
     hamburger.classList.toggle('active');
 
+    // Logika ganti icon
     if (navMenu.classList.contains('active')) {
       icon.classList.remove('fa-bars');
       icon.classList.add('fa-xmark');
@@ -19,6 +21,7 @@ if (hamburger && navMenu && icon) {
     }
   });
 
+  // Tutup menu saat link diklik
   document.querySelectorAll('.nav-menu a').forEach(link => {
     link.addEventListener('click', () => {
       navMenu.classList.remove('active');
@@ -33,23 +36,16 @@ if (hamburger && navMenu && icon) {
    2. DATA GALERI (FOTO & TEKS)
    ========================================= */
 const galleryData = [
-  // FOTO 1: Menggunakan .jpeg sesuai file Anda
+  // FOTO 1
   {
-    src: 'img/foto1.jpeg',    // <--- PASTIKAN FILE ASLINYA HURUF KECIL SEMUA
+    src: 'img/foto1.jpeg', 
     date: '27 Des 2025',      
     category: 'Rapat',        
     title: 'Koordinasi Perdana', 
     desc: 'Pertemuan pertama rapat koordinasi KKN PLP. Pembentukan struktur kepanitiaan serta pembagian tugas kepada seluruh anggota.'
   }, 
 
-  // FOTO 2: Biasanya default HP adalah .jpg
-  {
-    src: 'img/foto2.jpg',   
-    date: '28 Des 2025',
-    category: 'Observasi',
-    title: 'Kunjungan Sekolah',
-    desc: 'Melakukan observasi awal lingkungan sekolah SMAS Utama 1 untuk memetakan kebutuhan sarana dan prasarana.'
-  }
+
 ];
 
 /* =========================================
@@ -61,8 +57,11 @@ if (galleryContainer) {
   galleryData.forEach((item, index) => {
     const card = document.createElement('div');
     card.classList.add('gallery-card', 'fade-in');
+    
+    // Efek delay animasi
     card.style.animationDelay = `${index * 0.15}s`; 
 
+    // PERHATIKAN: Ini menggunakan tanda Backtick ( ` ), bukan kutip biasa!
     card.innerHTML = `
       <div class="gallery-img-wrapper">
         <img src="${item.src}" alt="${item.title}" loading="lazy">
