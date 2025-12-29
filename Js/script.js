@@ -5,16 +5,11 @@ const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const icon = hamburger ? hamburger.querySelector('i') : null;
 
-// Hanya jalankan jika elemen hamburger ada di halaman
 if (hamburger && navMenu && icon) {
-  
-  // Saat tombol diklik
   hamburger.addEventListener('click', () => {
-    // Toggle class 'active'
     navMenu.classList.toggle('active');
     hamburger.classList.toggle('active');
 
-    // Ubah ikon: Garis Tiga <-> Silang (X)
     if (navMenu.classList.contains('active')) {
       icon.classList.remove('fa-bars');
       icon.classList.add('fa-xmark');
@@ -24,7 +19,6 @@ if (hamburger && navMenu && icon) {
     }
   });
 
-  // Tutup menu otomatis saat link diklik
   document.querySelectorAll('.nav-menu a').forEach(link => {
     link.addEventListener('click', () => {
       navMenu.classList.remove('active');
@@ -39,18 +33,18 @@ if (hamburger && navMenu && icon) {
    2. DATA GALERI (FOTO & TEKS)
    ========================================= */
 const galleryData = [
-  // FOTO 1
+  // FOTO 1: Menggunakan .jpeg sesuai file Anda
   {
-    src: 'img/foto1.jpeg', 
+    src: 'img/foto1.jpeg',    // <--- PASTIKAN FILE ASLINYA HURUF KECIL SEMUA
     date: '27 Des 2025',      
     category: 'Rapat',        
     title: 'Koordinasi Perdana', 
     desc: 'Pertemuan pertama rapat koordinasi KKN PLP. Pembentukan struktur kepanitiaan serta pembagian tugas kepada seluruh anggota.'
-  }, // <--- JANGAN LUPA KOMA DISINI
+  }, 
 
-  // FOTO 2 (INI YANG TADI HILANG)
+  // FOTO 2: Biasanya default HP adalah .jpg
   {
-    src: 'img/foto2.jpg',   // Pastikan file ini ada
+    src: 'img/foto2.jpg',   
     date: '28 Des 2025',
     category: 'Observasi',
     title: 'Kunjungan Sekolah',
@@ -59,24 +53,19 @@ const galleryData = [
 ];
 
 /* =========================================
-   3. RENDER GALERI (MENAMPILKAN KE HTML)
+   3. RENDER GALERI
    ========================================= */
 const galleryContainer = document.getElementById('gallery');
 
 if (galleryContainer) {
   galleryData.forEach((item, index) => {
-    // 1. Buat Elemen Kartu
     const card = document.createElement('div');
     card.classList.add('gallery-card', 'fade-in');
-    
-    // Efek Waterfall (Muncul bergantian)
     card.style.animationDelay = `${index * 0.15}s`; 
 
-    // 2. Isi HTML Kartu
     card.innerHTML = `
       <div class="gallery-img-wrapper">
-        <img src="${item.src}" alt="${item.title}">
-        
+        <img src="${item.src}" alt="${item.title}" loading="lazy">
         <div class="date-badge">
           <span class="icon"><i class="fa-regular fa-calendar"></i></span> ${item.date}
         </div>
@@ -84,16 +73,12 @@ if (galleryContainer) {
       
       <div class="gallery-info">
         <div class="gallery-meta">${item.category}</div>
-        
         <div class="gallery-title">${item.title}</div>
-        
         <div class="gallery-line"></div>
-        
         <div class="gallery-desc">${item.desc}</div>
       </div>
     `;
 
-    // 3. Masukkan ke halaman
     galleryContainer.appendChild(card);
   });
 }
