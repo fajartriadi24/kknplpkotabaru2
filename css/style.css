@@ -1,0 +1,612 @@
+/* =========================================
+   1. SETUP & VARIABLES
+   ========================================= */
+/* Import Font Modern */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* --- PALET WARNA EMERALD (#096a50) --- */
+  --primary-color: #096a50;       /* Warna Utama (Teal/Emerald) */
+  --primary-dark: #044232;        /* Warna Gelap untuk Footer/Gradien */
+  --accent-color: #34d399;        /* Warna Aksen (Mint Cerah) */
+  
+  /* Netral */
+  --bg-color: #f0fdf9;            /* Background tint hijau sangat muda */
+  --text-main: #0f172a;           /* Hitam kebiruan (Slate) */
+  --text-secondary: #475569;      /* Abu-abu modern */
+  --card-bg: #ffffff;
+  
+  /* Shadows & Glass Effect */
+  --shadow-sm: 0 4px 6px -1px rgba(9, 106, 80, 0.08);
+  --shadow-lg: 0 20px 25px -5px rgba(9, 106, 80, 0.15), 0 8px 10px -6px rgba(9, 106, 80, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: 1px solid rgba(9, 106, 80, 0.1);
+}
+
+/* Reset Dasar */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Setup Body untuk Sticky Footer */
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  
+  /* KUNCI STICKY FOOTER: */
+  min-height: 100vh;      
+  display: flex;          
+  flex-direction: column; 
+}
+
+/* =========================================
+   2. NAVBAR (GLASSMORPHISM)
+   ========================================= */
+.navbar {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);          /* Efek Blur */
+  -webkit-backdrop-filter: blur(12px);  /* Support Safari */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: var(--glass-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-left {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  transition: transform 0.3s;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-menu a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+/* Animasi Garis Bawah Menu */
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.nav-menu a:hover {
+  color: var(--primary-color);
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+/* =========================================
+   3. HERO SECTION
+   ========================================= */
+.hero {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+  padding: 100px 20px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dekorasi Lingkaran Halus di Background */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -50px;
+  left: -50px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-card {
+  background: rgba(255, 255, 255, 0.98);
+  padding: 40px;
+  border-radius: 24px;
+  display: inline-block;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  color: var(--text-main);
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.hero-card h1 {
+  margin-bottom: 15px;
+  color: var(--primary-dark);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.lokasi {
+  font-size: 1rem;
+  color: var(--primary-color);
+  margin-top: 10px;
+  font-weight: 700;
+  background: rgba(9, 106, 80, 0.1);
+  display: inline-block;
+  padding: 6px 18px;
+  border-radius: 50px;
+}
+
+.divider {
+  font-size: 24px;
+  color: var(--text-secondary);
+  margin: 20px 0;
+  opacity: 0.3;
+}
+
+/* =========================================
+   4. LAYOUT & CARDS
+   ========================================= */
+.page {
+  padding: 60px 5%;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.page h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--primary-dark);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.grid-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  padding: 0 5%;
+  margin: 40px 0;
+  max-width: 1200px;
+  align-self: center;
+  width: 100%;
+}
+
+.card {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efek Bouncy */
+  border: 1px solid rgba(9, 106, 80, 0.05);
+  text-align: center;
+}
+
+.card h3 {
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  font-size: 1.25rem;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent-color);
+}
+
+/* =========================================
+   5. GALLERY CARD MASONRY (UPDATE TERBARU)
+   ========================================= */
+.gallery-grid {
+  /* Layout Kolom Koran */
+  column-count: 3;        /* 3 Kolom di Laptop */
+  column-gap: 25px;       /* Jarak antar kolom */
+  padding-bottom: 40px;
+}
+
+/* Container Kartu */
+.gallery-card {
+  background: white;
+  border-radius: 16px;      
+  margin-bottom: 25px;      
+  break-inside: avoid;      
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;         
+  border: 1px solid rgba(9, 106, 80, 0.05);
+  
+  /* Animasi Kartu Melayang */
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  z-index: 1;
+}
+
+/* Wrapper Foto (Agar badge bisa melayang) */
+.gallery-img-wrapper {
+  position: relative; 
+  overflow: hidden;
+}
+
+/* BADGE TANGGAL */
+.date-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.gallery-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Wrapper Teks Info */
+.gallery-info {
+  padding: 25px;
+  background: white;
+  position: relative;
+}
+
+/* Kategori (Teks Kecil Hijau) */
+.gallery-meta {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Judul Kegiatan */
+.gallery-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+/* Garis Pemisah Kecil */
+.gallery-line {
+  width: 40px;
+  height: 3px;
+  background: #e2e8f0;
+  border-radius: 2px;
+  margin-bottom: 15px;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+/* Deskripsi */
+.gallery-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  text-align: justify; /* Rata Kanan Kiri */
+}
+
+/* --- INTERAKSI HOVER --- */
+.gallery-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 50px -10px rgba(9, 106, 80, 0.25);
+  border-color: var(--accent-color);
+  z-index: 5;
+}
+
+.gallery-card:hover img {
+  transform: scale(1.1);
+}
+
+.gallery-card:hover .date-badge {
+  transform: translateY(-3px);
+  background: white;
+}
+
+.gallery-card:hover .gallery-line {
+  width: 60px; /* Garis memanjang saat hover */
+  background: var(--accent-color);
+}
+
+/* =========================================
+   6. FOOTER (STICKY)
+   ========================================= */
+footer {
+  background: var(--primary-dark);
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+  border-top: 5px solid var(--accent-color);
+  
+  /* KUNCI STICKY FOOTER: Dorong footer ke bawah */
+  margin-top: auto; 
+  
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-contact {
+  display: flex;
+  gap: 25px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-contact a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-contact a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+/* =========================================
+   7. ANIMASI & RESPONSIF
+   ========================================= */
+.fade-in {
+  animation: fadeUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsif Tablet & HP */
+@media (max-width: 1024px) {
+  .gallery-grid {
+    column-count: 3; /* Tablet: 3 Kolom */
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+  
+  .nav-menu {
+    display: none; /* Menu hilang di HP (Bisa ditambah JS Toggle nanti) */
+  }
+  
+  .grid-section {
+    padding: 0 20px;
+  }
+  
+  .gallery-grid {
+    column-count: 1; /* HP: 1 Kolom agar teks terbaca jelas */
+    column-gap: 0;
+  }
+  
+  .gallery-card {
+    margin-bottom: 30px;
+  }
+}
+
+/* =========================================
+   8. STRUKTUR ANGGOTA (MEMBER SECTION)
+   ========================================= */
+
+.section-title {
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--primary-dark);
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.member-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Posisi tengah */
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Kartu Anggota */
+.member-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: var(--shadow-sm);
+  width: 250px; /* Lebar tetap agar seragam */
+  text-align: center;
+  padding: 30px 20px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(9, 106, 80, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Efek Hover Kartu */
+.member-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent-color);
+}
+
+/* Bagian Foto (KOTAK MODERN) */
+.member-photo {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 20px auto;
+  
+  /* --- UPDATE: JADI KOTAK DENGAN SUDUT HALUS --- */
+  border-radius: 16px; 
+  
+  overflow: hidden;
+  border: 4px solid var(--bg-color); /* Ring luar foto */
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+/* Tambahan: Bingkai berubah warna saat hover */
+.member-card:hover .member-photo {
+  border-color: var(--accent-color);
+}
+
+.member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Agar foto tidak gepeng */
+  transition: transform 0.3s;
+}
+
+.member-card:hover .member-photo img {
+  transform: scale(1.1);
+}
+
+/* Informasi Anggota */
+.member-info h3 {
+  font-size: 1.1rem;
+  color: var(--primary-dark);
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.member-info .role {
+  display: inline-block;
+  background: rgba(52, 211, 153, 0.15); /* Background hijau mint transparan */
+  color: var(--primary-color);
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.member-info .major {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Khusus Koordinator Desa (Leader) */
+/* Agar tampil beda sedikit (opsional) */
+.member-card.leader {
+  border-top: 5px solid var(--primary-color);
+  background: #fafffd; /* Background sedikit kehijauan */
+}
+
+/* =========================================
+   9. MOBILE RESPONSIVE & HAMBURGER MENU
+   ========================================= */
+
+/* Default: Sembunyikan tombol hamburger di Laptop */
+.hamburger {
+  display: none;
+  cursor: pointer;
+}
+
+.hamburger i {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  transition: transform 0.3s ease;
+}
+
+/* Tampilan Mobile (Lebar layar di bawah 768px) */
+@media (max-width: 768px) {
+  
+  /* 1. Munculkan Tombol Hamburger */
+  .hamburger {
+    display: block;
+  }
+
+  /* 2. Ubah Nav Menu jadi Dropdown */
+  .nav-menu {
+    position: fixed;
+    top: 70px; /* Sesuaikan tinggi navbar */
+    left: -100%; /* Sembunyi di kiri layar */
+    width: 100%;
+    height: auto;
+    background: rgba(255, 255, 255, 0.98); /* Latar putih kaca */
+    backdrop-filter: blur(10px);
+    flex-direction: column; /* Susun menu ke bawah */
+    align-items: center;
+    padding: 30px 0;
+    gap: 25px;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animasi Slide */
+    border-bottom: 1px solid rgba(9, 106, 80, 0.1);
+  }
+
+  /* Class .active ditambahkan lewat JS saat diklik */
+  .nav-menu.active {
+    left: 0; /* Muncul ke tengah layar */
+  }
+
+  /* Styling Link di Mobile */
+  .nav-menu a {
+    font-size: 1.1rem;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Animasi Ikon Hamburger berputar saat aktif */
+  .hamburger.active i {
+    transform: rotate(180deg); /* Putar ikon */
+  }
+
+  /* Penyesuaian Layout Grid di Mobile */
+  .grid-section, .member-grid {
+    padding: 0 20px;
+  }
+  
+  .gallery-grid {
+    column-count: 1; /* Galeri jadi 1 kolom */
+  }
+}

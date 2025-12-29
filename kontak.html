@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontak</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-left">
+    <img src="img/logo-unila.png" class="logo" alt="Logo Unila">
+    <img src="img/logo-kkn.png" class="logo" alt="Logo KKN">
+  </div>
+  
+  <ul class="nav-menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="tentang.html">Tentang</a></li>
+    <li><a href="proker.html">Program</a></li>
+    <li><a href="galeri.html">Galeri</a></li>
+    </ul>
+
+  <div class="hamburger">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+</nav>
+
+<section class="page fade-in">
+  <h2>Hubungi Kami</h2>
+  <div class="card" style="text-align: center;">
+    <p>Silakan hubungi kami melalui saluran berikut:</p>
+    <br>
+    <p>
+      <i class="fa-regular fa-envelope" style="color: var(--primary-color); font-size: 1.5rem;"></i><br>
+      <strong>Email:</strong><br>
+      Belum ada
+    </p>
+    <br>
+    <p>
+      <i class="fa-brands fa-instagram" style="color: var(--primary-color); font-size: 1.5rem;"></i><br>
+      <strong>Instagram:</strong><br>
+      <a href="https://www.instagram.com/kknplp.kotabaru2" target="_blank" style="color: var(--text-main); text-decoration: none;">
+        @kknplp_kotabaru2
+      </a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-contact">
+    <a href="#">
+      <i class="fa-regular fa-envelope"></i> Email: Belum ada
+    </a>
+    
+    <a href="https://www.instagram.com/kknplp.kotabaru2?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">
+      <i class="fa-brands fa-instagram"></i> @kknplp_kotabaru2
+    </a>
+  </div>
+  <p>© 2026 KKN–PLP Desa Kota Baru 2, Universitas Lampung</p>
+</footer>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('.nav-menu');
+  const icon = hamburger ? hamburger.querySelector('i') : null;
+
+  if (hamburger && navMenu && icon) {
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      hamburger.classList.toggle('active');
+
+      if (navMenu.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-xmark');
+      } else {
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
