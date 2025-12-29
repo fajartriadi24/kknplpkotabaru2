@@ -227,7 +227,7 @@ body {
 }
 
 /* =========================================
-   5. GALLERY CARD MASONRY (UPDATE TERBARU)
+   5. GALLERY CARD MASONRY
    ========================================= */
 .gallery-grid {
   /* Layout Kolom Koran */
@@ -252,7 +252,7 @@ body {
   z-index: 1;
 }
 
-/* Wrapper Foto (Agar badge bisa melayang) */
+/* Wrapper Foto */
 .gallery-img-wrapper {
   position: relative; 
   overflow: hidden;
@@ -292,7 +292,7 @@ body {
   position: relative;
 }
 
-/* Kategori (Teks Kecil Hijau) */
+/* Kategori */
 .gallery-meta {
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -362,7 +362,7 @@ footer {
   padding: 40px 20px;
   border-top: 5px solid var(--accent-color);
   
-  /* KUNCI STICKY FOOTER: Dorong footer ke bawah */
+  /* KUNCI STICKY FOOTER */
   margin-top: auto; 
   
   display: flex;
@@ -414,33 +414,9 @@ footer {
   }
 }
 
-@media (max-width: 768px) {
-  .navbar {
-    padding: 15px 20px;
-  }
-  
-  .nav-menu {
-    display: none; /* Menu hilang di HP (Bisa ditambah JS Toggle nanti) */
-  }
-  
-  .grid-section {
-    padding: 0 20px;
-  }
-  
-  .gallery-grid {
-    column-count: 1; /* HP: 1 Kolom agar teks terbaca jelas */
-    column-gap: 0;
-  }
-  
-  .gallery-card {
-    margin-bottom: 30px;
-  }
-}
-
 /* =========================================
    8. STRUKTUR ANGGOTA (MEMBER SECTION)
    ========================================= */
-
 .section-title {
   text-align: center;
   margin-bottom: 40px;
@@ -452,18 +428,17 @@ footer {
 .member-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Posisi tengah */
+  justify-content: center; 
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Kartu Anggota */
 .member-card {
   background: white;
   border-radius: 20px;
   box-shadow: var(--shadow-sm);
-  width: 250px; /* Lebar tetap agar seragam */
+  width: 250px; 
   text-align: center;
   padding: 30px 20px;
   transition: all 0.3s ease;
@@ -472,29 +447,23 @@ footer {
   overflow: hidden;
 }
 
-/* Efek Hover Kartu */
 .member-card:hover {
   transform: translateY(-8px);
   box-shadow: var(--shadow-lg);
   border-color: var(--accent-color);
 }
 
-/* Bagian Foto (KOTAK MODERN) */
 .member-photo {
   width: 120px;
   height: 120px;
   margin: 0 auto 20px auto;
-  
-  /* --- UPDATE: JADI KOTAK DENGAN SUDUT HALUS --- */
-  border-radius: 16px; 
-  
+  border-radius: 16px; /* Kotak membulat */
   overflow: hidden;
-  border: 4px solid var(--bg-color); /* Ring luar foto */
+  border: 4px solid var(--bg-color);
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
 }
 
-/* Tambahan: Bingkai berubah warna saat hover */
 .member-card:hover .member-photo {
   border-color: var(--accent-color);
 }
@@ -502,7 +471,7 @@ footer {
 .member-photo img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Agar foto tidak gepeng */
+  object-fit: cover;
   transition: transform 0.3s;
 }
 
@@ -510,7 +479,6 @@ footer {
   transform: scale(1.1);
 }
 
-/* Informasi Anggota */
 .member-info h3 {
   font-size: 1.1rem;
   color: var(--primary-dark);
@@ -520,7 +488,7 @@ footer {
 
 .member-info .role {
   display: inline-block;
-  background: rgba(52, 211, 153, 0.15); /* Background hijau mint transparan */
+  background: rgba(52, 211, 153, 0.15);
   color: var(--primary-color);
   padding: 4px 12px;
   border-radius: 50px;
@@ -534,15 +502,13 @@ footer {
   color: var(--text-secondary);
 }
 
-/* Khusus Koordinator Desa (Leader) */
-/* Agar tampil beda sedikit (opsional) */
 .member-card.leader {
   border-top: 5px solid var(--primary-color);
-  background: #fafffd; /* Background sedikit kehijauan */
+  background: #fafffd; 
 }
 
 /* =========================================
-   9. MOBILE RESPONSIVE & HAMBURGER MENU
+   9. MOBILE RESPONSIVE & HAMBURGER MENU (FIXED!)
    ========================================= */
 
 /* Default: Sembunyikan tombol hamburger di Laptop */
@@ -551,62 +517,73 @@ footer {
   cursor: pointer;
 }
 
-.hamburger i {
-  font-size: 1.5rem;
-  color: var(--primary-color);
-  transition: transform 0.3s ease;
-}
-
 /* Tampilan Mobile (Lebar layar di bawah 768px) */
 @media (max-width: 768px) {
   
-  /* 1. Munculkan Tombol Hamburger */
+  /* 1. Navbar Setting */
+  .navbar {
+    padding: 15px 20px;
+    justify-content: space-between;
+  }
+
+  /* 2. Tombol Hamburger Muncul */
   .hamburger {
     display: block;
+    z-index: 1001; /* Pastikan di atas menu */
+  }
+  
+  .hamburger i {
+    font-size: 1.8rem;
+    color: var(--primary-color);
   }
 
-  /* 2. Ubah Nav Menu jadi Dropdown */
+  /* 3. MENU NAVIGASI (SLIDE DARI KANAN) */
   .nav-menu {
     position: fixed;
-    top: 70px; /* Sesuaikan tinggi navbar */
-    left: -100%; /* Sembunyi di kiri layar */
-    width: 100%;
-    height: auto;
-    background: rgba(255, 255, 255, 0.98); /* Latar putih kaca */
-    backdrop-filter: blur(10px);
-    flex-direction: column; /* Susun menu ke bawah */
+    top: 0;
+    right: -100%; /* Sembunyi di kanan */
+    width: 70%;   /* Lebar menu 70% layar */
+    height: 100vh; /* Full Height */
+    
+    background-color: #ffffff; /* Putih Solid */
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 30px 0;
-    gap: 25px;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animasi Slide */
-    border-bottom: 1px solid rgba(9, 106, 80, 0.1);
+    gap: 30px;
+    
+    transition: 0.4s ease-in-out;
+    z-index: 1000; /* Di atas konten lain */
   }
 
-  /* Class .active ditambahkan lewat JS saat diklik */
+  /* KELAS AKTIF (Saat diklik) */
   .nav-menu.active {
-    left: 0; /* Muncul ke tengah layar */
+    right: 0; /* Geser ke layar */
   }
 
-  /* Styling Link di Mobile */
+  /* Link Menu di HP */
   .nav-menu a {
-    font-size: 1.1rem;
-    display: block;
-    width: 100%;
-    text-align: center;
+    font-size: 1.2rem;
+    color: var(--primary-dark);
+    font-weight: 700;
+  }
+  
+  .nav-menu a:hover {
+    color: var(--accent-color);
   }
 
-  /* Animasi Ikon Hamburger berputar saat aktif */
-  .hamburger.active i {
-    transform: rotate(180deg); /* Putar ikon */
-  }
-
-  /* Penyesuaian Layout Grid di Mobile */
+  /* Fix Layout Halaman di HP */
   .grid-section, .member-grid {
     padding: 0 20px;
   }
   
+  .hero {
+    padding: 80px 20px 50px 20px;
+  }
+  
   .gallery-grid {
-    column-count: 1; /* Galeri jadi 1 kolom */
+    column-count: 1;
   }
 }
